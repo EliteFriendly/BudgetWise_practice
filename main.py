@@ -1,7 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
-from cheque_info.uploadIMGRoute import uploadIMG
-from fill_llm.fillLLMRoute import  productsLLM
-from cheque_info.ChequeInfo import ChequeInfo
+from cheque_Info.upload_IMG_router import uploadIMG
+from fill_Llm.fill_llm_router import productsLLM
 
 app = FastAPI()
 app.include_router(uploadIMG)

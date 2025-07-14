@@ -1,6 +1,5 @@
 import requests, json
 import os
-import tuple
 from input_Protect.middleware import MiddleWare
 
 class ChequeInfo(MiddleWare):
