@@ -1,5 +1,5 @@
 from fastapi import UploadFile, File, APIRouter
-from cheque_Info.сheque_Info import ChequeInfo
+from cheque_Info.сheque_info import ChequeInfo
 
 
 
