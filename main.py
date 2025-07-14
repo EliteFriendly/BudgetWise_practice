@@ -1,21 +1,15 @@
 from fastapi import FastAPI, UploadFile, File
-from uploadIMGRoute import uploadIMG
-from fillLLMRoute import  productsLLM
-#from autoFillLLM import AutoFillLLM
-from ChequeInfo import ChequeInfo
+from cheque_Info.upload_IMG_router import uploadIMG
+from fill_Llm.fill_llm_router import productsLLM
 
 app = FastAPI()
-#QRreader = ChequeInfo()
 app.include_router(uploadIMG)
 app.include_router(productsLLM)
-#LLMproba = AutoFillLLM()
 
 
 @app.get("/")
 def root():
-
     return {"Main page"}
-#Test
 
 
 

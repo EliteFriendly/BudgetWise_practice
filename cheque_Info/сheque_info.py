@@ -1,10 +1,8 @@
 import requests, json
 import os
+from input_Protect.middleware import MiddleWare
 
-
-
-
-class ChequeInfo():
+class ChequeInfo(MiddleWare):
     __goodIMGExtension = ("bmp", "gif", "jpeg", "png", "tiff", "pdf",)
     __token = os.getenv("TOKEN") # token from website: https://proverkacheka.com 
     __websiteAPI = os.getenv("API") #API to get info from cheques from website
@@ -52,13 +50,14 @@ class ChequeInfo():
         
         
         #Get info from dict, for future update __dictProducts
-       
+        tupleJs = tuple(r.json()["data"]["json"]["items"])
+        lenItems = len(tupleJs)
         tmp = []
-        for i in range(len(r.json()["data"]["json"]["items"])):# take only items/products from .json and set its into a tmp array
-            tmp.append(r.json()["data"]["json"]["items"][i]["name"])
+        for i in range(lenItems):# take only items/products from .json and set its into a tmp array
+            tmp.append(tupleJs[i]["name"])
             tmp.append("None")
-            tmp.append(r.json()["data"]["json"]["items"][i]["quantity"])
-            tmp.append(r.json()["data"]["json"]["items"][i]["price"])
+            tmp.append(tupleJs[i]["quantity"])
+            tmp.append(tupleJs[i]["price"])
             tmp.append(tmp[2]*tmp[3])
             self.__dictProducts["items"].append( { k:v for (k,v) in zip(self.__columnsName, tmp)}  )
             tmp = []
